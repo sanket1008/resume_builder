@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:resume_builder/resorses/colors.dart';
+import 'package:resume_builder/resorses/components/common_button.dart';
 import 'package:resume_builder/view/resume_list_card.dart';
+
+import '../util/routes/routes_name.dart';
+import 'add_resume_details.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,7 +26,15 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("List of Resume",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text("List of Resume",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                    CommonButton(text: "Add Resume", onPress: (){
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=>const AddResumeDetails()));
+                    })
+                  ],
+                ),
                 SizedBox(
                   height: 10,
                 ),
