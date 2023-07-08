@@ -104,6 +104,19 @@ class AddResumeDetails extends StatelessWidget {
               ),
               CommonInputBox(
                 isBorderEnabled: true,
+                maxLines: 2,
+                label: "Skills",
+                controller: resumeDetailsModel.skills,
+                validator: (value) {
+                  if (value.toString().isEmpty) {
+                    return "Enter Hobbies";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              CommonInputBox(
+                isBorderEnabled: true,
                 maxLines: 4,
                 label: "Hobbies",
                 controller: resumeDetailsModel.hobbies,
