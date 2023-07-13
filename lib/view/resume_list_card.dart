@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:resume_builder/util/assets.dart';
 
 import '../resorses/components/common_image_view.dart';
+import '../view_model/resume_details_view_model.dart';
 
 class ResumeListCard extends StatelessWidget {
-  const ResumeListCard({Key? key}) : super(key: key);
+   ResumeListCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return  InkWell(
       onTap: () {
        // Get.to(() => const MyLiveCourseDetailsScreen());
@@ -24,7 +27,7 @@ class ResumeListCard extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: const CommonImageView(
-                        image: Assets.DEFAULT_IMAGE,
+                        //image: Assets.DEFAULT_IMAGE,
                         height: 80,
                         width: 80,
                       ),
