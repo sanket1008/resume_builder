@@ -16,7 +16,7 @@ class Routes {
             builder: (BuildContext context) => const LoginScreen());
       case RouteNames.addResume:
         return MaterialPageRoute(
-            builder: (BuildContext context) => const AddResumeDetails());
+            builder: (BuildContext context) => const AddResumeDetails(edit: false,));
       default:
         return MaterialPageRoute(builder: (_) {
           return const Scaffold(
