@@ -156,6 +156,15 @@ class _AddResumeDetailsState extends State<AddResumeDetails> {
                         } else {
                           resumeDetailsModel.addItems().then((value) {
                             Navigator.pop(context);
+
+                            // resumeDetailsModel.firstName.clear();
+                            // resumeDetailsModel.lastName.clear();
+                            // resumeDetailsModel.address.clear();
+                            // resumeDetailsModel.skills.clear();
+                            // resumeDetailsModel.educationalDetails.clear();
+                            // resumeDetailsModel.DOB.clear();
+                            // resumeDetailsModel.hobbies.clear();
+
                           });
                         }
                       }

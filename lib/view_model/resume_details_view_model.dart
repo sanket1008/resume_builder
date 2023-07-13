@@ -31,8 +31,9 @@ class ResumeDetailsViewModel with ChangeNotifier{
     print("in add resume");
     await SqlHelper.updateItem(id??0,firstName.text,lastName.text,DOB.text,aboutYou.text,address.text,educationalDetails.text, skills.text,hobbies.text);
     final data = await SqlHelper.getItems();
-
     print(data);
+
+
 
 
   }

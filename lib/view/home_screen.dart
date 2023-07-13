@@ -67,6 +67,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     CommonButton(
                         text: "Add Resume",
                         onPress: () {
+                          resumeDetailsModel.firstName.clear();
+                          resumeDetailsModel.lastName.clear();
+                          resumeDetailsModel.address.clear();
+                          resumeDetailsModel.skills.clear();
+                          resumeDetailsModel.aboutYou.clear();
+                          resumeDetailsModel.educationalDetails.clear();
+                          resumeDetailsModel.DOB.clear();
+                          resumeDetailsModel.hobbies.clear();
                           Navigator.push(
                               context,
                               MaterialPageRoute(
