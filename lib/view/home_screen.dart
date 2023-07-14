@@ -3,8 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:resume_builder/repository/sql_helper.dart';
 import 'package:resume_builder/resorses/colors.dart';
 import 'package:resume_builder/resorses/components/common_button.dart';
+import 'package:share_plus/share_plus.dart';
 
-import '../resorses/components/common_image_view.dart';
+import '../util/assets.dart';
 import '../view_model/resume_details_view_model.dart';
 import 'add_resume_details.dart';
 
@@ -106,6 +107,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
                                   flex: 2,
@@ -113,8 +116,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     children: [
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
-                                        child: const CommonImageView(
-                                          //image: Assets.DEFAULT_IMAGE,
+                                        child: Image.asset(
+                                          Assets.RESUME,
                                           height: 80,
                                           width: 80,
                                         ),
@@ -124,22 +127,49 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 Expanded(
                                   flex: 7,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        resumeList[index]["firstname"],
-                                      ),
-                                    ],
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "${resumeList[index]["firstname"]} ${resumeList[index]["lastname"]}",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
+                                        ),
+                                        Text("${resumeList[index]["about"]}",
+                                            overflow: TextOverflow.ellipsis),
+                                        Text("${resumeList[index]["skills"]}",
+                                            overflow: TextOverflow.ellipsis),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                IconButton(
-                                  icon: Icon(Icons.delete),
-                                  onPressed: () {
-                                    resumeDetailsModel
-                                        .delete(resumeList[index]["id"]);
-                                  },
+                                Column(
+                                  children: [
+                                    IconButton(
+                                      icon:
+                                          Icon(Icons.delete, color: Colors.red),
+                                      onPressed: () {
+                                        resumeDetailsModel
+                                            .delete(resumeList[index]["id"]);
+                                      },
+                                    ),
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.share,
+                                        color: Colors.blueAccent,
+                                      ),
+                                      onPressed: () async {
+                                        await Share.share(
+                                            "Name: ${resumeList[index]["firstname"]}${resumeList[index]["lastname"]}\nDate of birth: ${resumeList[index]["dob"]}\nAbout you: ${resumeList[index]["about"]}\n Address: ${resumeList[index]["address"]}\nEducation details: ${resumeList[index]["education"]}\nSkills: ${resumeList[index]["skills"]}\n Hobbies: ${resumeList[index]["hobbies"]}",
+                                            subject: "share");
+                                      },
+                                    ),
+                                  ],
                                 )
                               ],
                             ),
@@ -170,5 +200,10 @@ class _HomeScreenState extends State<HomeScreen> {
       resumeDetailsModel.skills.text = existingjournal['skills'];
       resumeDetailsModel.hobbies.text = existingjournal['hobbies'];
     }
+  }
+
+  void _onShare(BuildContext context) async {
+    // final box = context.findRenderObject() as RenderSliver?;
+    await Share.share("text", subject: "jjj");
   }
 }
