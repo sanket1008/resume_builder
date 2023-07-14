@@ -26,5 +26,6 @@ abstract class Assets {
   static const String COURSES_COLORED = "assets/images/ic_courses_colored.svg";
   static const String OTP_SCREEN = "assets/images/img_otp.svg";
   static const String IC_NEXT = "assets/images/ic_next.svg";
+  static const String RESUME = "assets/images/story.png";
 
 }
