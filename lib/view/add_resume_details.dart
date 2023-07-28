@@ -12,6 +12,7 @@ class AddResumeDetails extends StatefulWidget {
   final bool edit;
   final int? id;
 
+
   @override
   State<AddResumeDetails> createState() => _AddResumeDetailsState();
 }
@@ -25,7 +26,7 @@ class _AddResumeDetailsState extends State<AddResumeDetails> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Resume Details"),
+        title: widget.edit==true?Text("Edit Resume Details"):Text("Add Resume Details"),
         automaticallyImplyLeading: true,
       ),
       body: SafeArea(
@@ -38,6 +39,19 @@ class _AddResumeDetailsState extends State<AddResumeDetails> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                CommonInputBox(
+                  isBorderEnabled: true,
+                  maxLines: 1,
+                  label: "Resume title",
+                  controller: resumeDetailsModel.resumeTitle,
+                  validator: (value) {
+                    if (value.toString().isEmpty) {
+                      return "Enter title";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
                 CommonInputBox(
                   isBorderEnabled: true,
                   maxLines: 1,

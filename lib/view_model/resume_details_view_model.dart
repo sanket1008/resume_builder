@@ -5,6 +5,7 @@ import '../repository/sql_helper.dart';
 class ResumeDetailsViewModel with ChangeNotifier{
 
   final firstName=TextEditingController();
+  final resumeTitle=TextEditingController();
   final lastName=TextEditingController();
   final DOB=TextEditingController();
   final aboutYou=TextEditingController();
@@ -16,7 +17,7 @@ class ResumeDetailsViewModel with ChangeNotifier{
   Future<void> addItems() async{
 
     print("in add resume");
-    await SqlHelper.createIem(firstName.text,lastName.text,DOB.text,aboutYou.text,address.text,educationalDetails.text, skills.text,hobbies.text);
+    await SqlHelper.createIem(resumeTitle.text,firstName.text,lastName.text,DOB.text,aboutYou.text,address.text,educationalDetails.text, skills.text,hobbies.text);
 
 
     final data = await SqlHelper.getItems();
@@ -29,7 +30,7 @@ class ResumeDetailsViewModel with ChangeNotifier{
   Future<void> updateItem(int? id) async{
 
     print("in add resume");
-    await SqlHelper.updateItem(id??0,firstName.text,lastName.text,DOB.text,aboutYou.text,address.text,educationalDetails.text, skills.text,hobbies.text);
+    await SqlHelper.updateItem(id??0,resumeTitle.text,firstName.text,lastName.text,DOB.text,aboutYou.text,address.text,educationalDetails.text, skills.text,hobbies.text);
     final data = await SqlHelper.getItems();
     print(data);
 

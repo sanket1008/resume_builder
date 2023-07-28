@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:pdf/widgets.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 
 class SqlHelper {
   static Future<void> createTable(sql.Database database) async {
     print("inside create table");
     await database.execute(
-        """ CREATE TABLE  items(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        """ CREATE TABLE  items(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,resumeTitle TEXT,
     firstname TEXT,lastname TEXT,dob TEXT,about TEXT,address TEXT,education TEXT,skills TEXT,hobbies TEXT)""");
   }
 
@@ -17,11 +18,12 @@ class SqlHelper {
     });
   }
 
-  static Future<int> createIem(String? firstname, String? lastName, String? dob,
+  static Future<int> createIem(String? resumeTitle,String? firstname, String? lastName, String? dob,
       String? about, String? address,String? education, String? skills, String? hobbies) async {
     print("inside create item${getItems()}");
     final db = await SqlHelper.db();
     final data = {
+      "resumeTitle":resumeTitle,
       "firstname": firstname,
       "lastname": lastName,
       "dob": dob,
@@ -47,11 +49,12 @@ class SqlHelper {
     return db.query("items", where: "id=?", whereArgs: [id], limit: 1);
   }
 
-  static Future<int> updateItem(int id, String? firstname, String? lastName, String? dob,
+  static Future<int> updateItem(int id,String? resumeTitle, String? firstname, String? lastName, String? dob,
       String? about,String? education, String? address, String? skills, String? hobbies) async {
     final db = await SqlHelper.db();
 
     final data = {
+      "resumeTitle":resumeTitle,
       "firstname": firstname,
       "lastname": lastName,
       "dob": dob,
@@ -76,3 +79,4 @@ class SqlHelper {
     }
   }
 }
+
